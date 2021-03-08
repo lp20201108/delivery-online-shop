@@ -1,23 +1,5 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
-
-const navbarLinks = [
-  {
-    exact: true,
-    to: "/",
-    label: "Главная",
-  },
-  {
-    exact: false,
-    to: "/products",
-    label: "Продукты",
-  },
-  {
-    exact: false,
-    to: "/search",
-    label: "Поиск",
-  },
-];
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -27,18 +9,11 @@ const Navbar = () => {
           The Delivery
         </Link>
         <ul className="navbar-nav">
-          {navbarLinks.map(({ exact, to, label }) => (
-            <li className="nav-item" key={to}>
-              <NavLink
-                exact={exact}
-                to={to}
-                className="nav-link"
-                activeClassName="active"
-                aria-current="page"
-              >
-                {label}
-              </NavLink>
-            </li>
+          <li className="nav-item">
+            <a href="/" className="nav-link" aria-current="page">
+              Главная
+            </a>
+          </li>
           ))}
         </ul>
       </div>

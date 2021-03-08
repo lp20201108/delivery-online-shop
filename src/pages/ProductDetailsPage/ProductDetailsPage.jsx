@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ProductsService from "../../services/products.service";
 import { toCurrency } from "../../lib";
-import Breadcrumbs from "../../shared/components/Breadcrumbs";
 
 class ProductDetailsPage extends Component {
   httpService = new ProductsService();
@@ -31,12 +30,9 @@ class ProductDetailsPage extends Component {
   render() {
     const { product } = this.state;
     return (
-      <div>
-        <Breadcrumbs>
-          <button className="btn btn-primary">Назад</button>
-        </Breadcrumbs>
+      <>
         {product && (
-          <div className="container">
+          <div className="container mt-5">
             <div className="row">
               <div className="col-12 offset-lg-1 col-lg-4">
                 <img
@@ -46,8 +42,8 @@ class ProductDetailsPage extends Component {
                 />
               </div>
               <div className="col-12 offset-lg-1 col-lg-4">
-                <h1>{product.name.ukr}</h1>
-                <b className="d-inline-block my-2">
+                <h3 className="mb-4">{product.name.ukr}</h3>
+                <b className="d-inline-block my-3">
                   {toCurrency({ price: product.price })}
                 </b>
                 <p>{product.description.ukr}</p>
@@ -55,7 +51,7 @@ class ProductDetailsPage extends Component {
             </div>
           </div>
         )}
-      </div>
+      </>
     );
   }
 }
