@@ -14,6 +14,7 @@ class SelectSort extends PureComponent {
   componentDidMount() {
     const { categoryId } = queryString.parse(this.props.location.search);
     if (this.props.location.search) {
+      this.setState({ category: categoryId });
     }
     this.categoriesService
       .getAllCategories()
