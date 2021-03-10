@@ -1,5 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
+const navArr = [
+  { label: "Home", exact: true, to: "/" },
+  { label: "Products", exact: false, to: "/products" },
+  { label: "Search", exact: false, to: "/search" },
+];
 
 const Navbar = () => {
   return (
@@ -9,11 +15,19 @@ const Navbar = () => {
           The Delivery
         </Link>
         <ul className="navbar-nav">
-          <li className="nav-item">
-            <a href="/" className="nav-link" aria-current="page">
-              Главная
-            </a>
-          </li>
+          {navArr.map(({ label, exact, to }) => (
+            <li className="nav-item" key={to}>
+              <NavLink
+                exact={exact}
+                to={to}
+                className="nav-link"
+                aria-current="page"
+                activeClassName="active"
+              >
+                {label}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>
