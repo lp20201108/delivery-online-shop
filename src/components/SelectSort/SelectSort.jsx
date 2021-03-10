@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { withRouter } from "react-router-dom";
+import queryString from "query-string";
 import CategoriesService from "../../services/categories.service";
 
 class SelectSort extends PureComponent {
@@ -11,17 +12,24 @@ class SelectSort extends PureComponent {
   };
 
   componentDidMount() {
+    const { categoryId } = queryString.parse(this.props.location.search);
+    if (categoryId) {
+      this.setState({ category: categoryId });
+    }
     this.categoriesService
       .getAllCategories()
       .then(({ data: { result: categories } }) => this.setState({ categories }))
       .catch((error) => this.setState({ error }));
-    console.log(this.state.categories);
   }
 
   handleChangeCategory = (evt) => {
     const { value } = evt.target;
     this.setState({ category: value });
-    // this.props.history.push();
+    if (!value) {
+      this.props.history.push(`products`);
+      return;
+    }
+    this.props.history.push(`?categoryId=${value}`);
   };
 
   render() {
@@ -35,6 +43,7 @@ class SelectSort extends PureComponent {
         value={category}
         onChange={this.handleChangeCategory}
       >
+        <option value="">Выбрать категорию</option>
         {categories.map(({ _id, name }) => (
           <option key={_id} value={_id}>
             {name.ukr}
