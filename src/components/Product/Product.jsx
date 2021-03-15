@@ -1,6 +1,8 @@
 import React from "react";
-import { toCurrency } from "../../lib";
 import { Link } from "react-router-dom";
+
+import { withLog } from "../../hocs";
+import { toCurrency } from "../../lib";
 
 const Product = ({ name, price, thumbnail, _id }) => {
   return (
@@ -24,4 +26,4 @@ const Product = ({ name, price, thumbnail, _id }) => {
   );
 };
 
-export default Product;
+export default withLog(Product);
