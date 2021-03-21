@@ -1,23 +1,10 @@
 import React from "react";
-import { withFormik } from "../../hocs";
+import { withRouter } from "react-router-dom";
+
+import { withFormik, withLog } from "../../hocs";
+import { compose } from "../../lib";
 
 const Search = ({ handleChange, values, onSubmit }) => {
-  // state = {
-  //   query: "",
-  // };
-  //
-  // handleChange = ({ target }) => {
-  //   const { value: query } = target;
-  //   this.setState({ query });
-  // };
-  //
-  // onSubmit = (event) => {
-  //   event.preventDefault();
-  //   this.props.onSubmit(this.state.query);
-  //   this.setState({ query: "" });
-  // };
-
-  // render() {
   const { query } = values;
   return (
     <form className="d-flex" onSubmit={onSubmit}>
@@ -35,13 +22,19 @@ const Search = ({ handleChange, values, onSubmit }) => {
       </button>
     </form>
   );
-  // }
 };
 
-const handleSubmit = (values) => {
-  alert(JSON.stringify(values));
+const handleSubmit = ({ query }, { searchProducts }, resetForm) => {
+  searchProducts(query);
+  // resetForm();
+  // console.log(resetForm);
+  // alert(JSON.stringify({ ...values, ...ownProps }));
 };
 
-export default withFormik({ initialValues: { query: "" }, handleSubmit })(
-  Search
-);
+// compose(withLog);
+
+export default compose(
+  withRouter,
+  withFormik({ initialValues: { query: "" }, handleSubmit }),
+  withLog
+)(Search);

@@ -7,6 +7,7 @@ import SearchPage from "../../pages/SearchPage";
 import NotFoundPage from "../../pages/NotFoundPage";
 import CommonLayout from "../../shared/layouts/CommonLayout";
 import ProductDetailsPage from "../../pages/ProductDetailsPage";
+import WishListPage from "../../pages/WishListPage";
 
 // url = http://localhost:3000/products/search
 // or location.pathname
@@ -29,6 +30,7 @@ const App = () => {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/products" component={ProductsPage} />
         <Route path="/products/:productId" component={ProductDetailsPage} />
+        <Route exact path="/wishlist" component={WishListPage} />
         <Route path="/search" component={SearchPage} />
         <Route path="/404" component={NotFoundPage} />
         <Redirect to="/404" />

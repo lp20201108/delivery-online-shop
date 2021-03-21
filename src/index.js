@@ -1,23 +1,18 @@
-import {StrictMode} from "react";
-import {BrowserRouter} from 'react-router-dom';
+import { StrictMode } from "react";
+import { BrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom";
-import App from './components/App';
-// import SearchPage from "./pages/SearchPage/SearchPage";
+import { Provider } from "react-redux";
+
+import App from "./components/App";
+import store from "./redux/configure-store";
 
 ReactDOM.render(
-    <StrictMode>
-        <BrowserRouter>
-            <App/>
-        </BrowserRouter>
-    </StrictMode>,
-    document.getElementById("root")
+  <StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </StrictMode>,
+  document.getElementById("root")
 );
-
-
-// url = http://localhost:3000/products/search
-// switch(url) {
-// case '/products/search':
-// return <Foo />
-// case /products:
-// return <Bar />
-// }
