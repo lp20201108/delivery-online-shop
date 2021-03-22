@@ -8,6 +8,8 @@ import NotFoundPage from "../../pages/NotFoundPage";
 import CommonLayout from "../../shared/layouts/CommonLayout";
 import ProductDetailsPage from "../../pages/ProductDetailsPage";
 import WishListPage from "../../pages/WishListPage";
+import LoginPage from "../../pages/LoginPage";
+import RegisterPage from "../../pages/RegisterPage";
 
 // url = http://localhost:3000/products/search
 // or location.pathname
@@ -29,6 +31,8 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/products" component={ProductsPage} />
+        <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/register" component={RegisterPage} />
         <Route path="/products/:productId" component={ProductDetailsPage} />
         <Route exact path="/wishlist" component={WishListPage} />
         <Route path="/search" component={SearchPage} />

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import WishListIcon from "../../icons/WishListIcon";
+// import WishListIcon from "../../icons/WishListIcon";
 
 import { withWishlist } from "../../../hocs";
 
@@ -11,7 +11,7 @@ const navArr = [
   // { label: <WishListIcon />, exact: false, to: "/wishlist" },
 ];
 
-const Navbar = ({ items = [] }) => {
+const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
@@ -33,10 +33,18 @@ const Navbar = ({ items = [] }) => {
             </li>
           ))}
         </ul>
-        <Link to="/wishlist">
-          <WishListIcon />
-          {items.length}
-        </Link>
+        <div className="display-flex align-center">
+          <Link to="/register" className="mx-1">
+            SignUp
+          </Link>
+          <Link to="/login" className="mx-2">
+            SignIn
+          </Link>
+          {/*<Link to="/wishlist">*/}
+          {/*  <WishListIcon />*/}
+          {/*  {items.length}*/}
+          {/*</Link>*/}
+        </div>
       </div>
     </nav>
   );
