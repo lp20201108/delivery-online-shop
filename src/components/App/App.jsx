@@ -30,9 +30,9 @@ const App = () => {
     <CommonLayout>
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/products" component={ProductsPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/register" component={RegisterPage} />
+        <Route exact path="/products" component={ProductsPage} />
         <Route path="/products/:productId" component={ProductDetailsPage} />
         <Route exact path="/wishlist" component={WishListPage} />
         <Route path="/search" component={SearchPage} />
