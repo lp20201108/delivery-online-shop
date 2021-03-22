@@ -11,21 +11,7 @@ import WishListPage from "../../pages/WishListPage";
 import LoginPage from "../../pages/LoginPage";
 import RegisterPage from "../../pages/RegisterPage";
 
-// url = http://localhost:3000/products/search
-// or location.pathname
-// switch(url) {
-// case '/products/search':
-// return <Foo />
-// case /products:
-// return <Bar />
-// default:
-// return NotFoundPage
-// }
-
 const App = () => {
-  // state = {
-  //     date: Date.now()
-  // }
   return (
     <CommonLayout>
       <Switch>
