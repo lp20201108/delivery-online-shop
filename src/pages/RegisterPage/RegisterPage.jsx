@@ -1,7 +1,6 @@
 import React from "react";
-import { Formik, Form, ErrorMessage, useField } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import { connect } from "react-redux";
-import cn from "classnames";
 import * as Yup from "yup";
 
 import { removeConfirmToken } from "../../redux/auth/auth.actions";
@@ -13,23 +12,8 @@ import {
 } from "../../redux/auth/auth.operations";
 
 import { Modal } from "../../shared/components";
+import TextInput from "../../shared/components/TextInput";
 
-const TextInput = ({ className, ...props }) => {
-  const [field, meta] = useField(props);
-  return (
-    <input
-      className={cn(
-        "form-control",
-        {
-          "is-invalid": meta.error && meta.touched,
-        },
-        className
-      )}
-      {...props}
-      {...field}
-    />
-  );
-};
 
 const isStrongPassword = /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/;
 
@@ -54,6 +38,8 @@ const RegisterPage = ({
   confirmToken,
   confirmAccount,
   removeConfirmToken,
+  loading,
+  history,
 }) => {
   return (
     <div className="container mt-5">
@@ -61,7 +47,7 @@ const RegisterPage = ({
         <Formik
           initialValues={{ verificationCode: "" }}
           onSubmit={({ verificationCode }) => {
-            confirmAccount(verificationCode);
+            confirmAccount(verificationCode, history);
           }}
         >
           <Form>
@@ -151,7 +137,11 @@ const RegisterPage = ({
                 component="small"
               />
             </div>
-            <button type="submit" className="btn btn-primary mt-2 w-100">
+            <button
+              type="submit"
+              className="btn btn-primary mt-2 w-100"
+              disabled={loading}
+            >
               Sign Up
             </button>
           </Form>
@@ -163,6 +153,7 @@ const RegisterPage = ({
 
 const mapState = (state) => ({
   confirmToken: Boolean(state.auth.confirmToken),
+  loading: state.auth.loading,
 });
 
 const mapDispatch = {

@@ -22,6 +22,12 @@ const logout = createAction("auth/logout");
 const saveConfirmToken = createAction("auth/saveConfirmToken");
 const removeConfirmToken = createAction("auth/removeConfirmToken");
 
+// getCurrentUser
+
+const getCurrentUserRequested = createAction("auth/getCurrentUser");
+const getCurrentUserSuccess = createAction("auth/getCurrentUserSuccess");
+const getCurrentUserFailure = createAction("auth/getCurrentUserFailure");
+
 export {
   signInRequested,
   signInSuccess,
@@ -35,4 +41,7 @@ export {
   logout,
   saveConfirmToken,
   removeConfirmToken,
+  getCurrentUserRequested,
+  getCurrentUserSuccess,
+  getCurrentUserFailure,
 };

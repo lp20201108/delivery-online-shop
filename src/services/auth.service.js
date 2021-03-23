@@ -12,7 +12,7 @@ export default class AuthService {
   };
 
   register = (data) => {
-    console.log(data, 'data')
+    // console.log(data, 'data')
     return axios.post("auth/accounts/signup", data);
   };
 

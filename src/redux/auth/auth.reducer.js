@@ -4,25 +4,39 @@ import {
   signUpFailure,
   signUpSuccess,
   signUpRequested,
-  saveConfirmToken,
+  // saveConfirmToken,
   removeConfirmToken,
   confirmAccountSuccess,
   confirmAccountRequested,
   confirmAccountFailure,
+  signInSuccess,
+  logout,
+  getCurrentUserSuccess,
 } from "./auth.actions";
 
-const accessToken = createReducer(null, {});
-const refreshToken = createReducer(null, {});
+const accessToken = createReducer(null, {
+  [signInSuccess]: (_, { payload }) => payload.accessToken,
+  [logout]: () => null,
+});
 
-const confirmToken = createReducer(null, {
-  [saveConfirmToken]: (state, { payload }) => payload.confirmToken,
-  [removeConfirmToken]: () => null,
+const refreshToken = createReducer(null, {
+  [signInSuccess]: (_, { payload }) => payload.refreshToken,
+  [logout]: () => null,
 });
 
 const user = createReducer(
   { email: null, firstName: null, phone: null, avatarURL: null },
-  {}
+  {
+    [signInSuccess]: (_, { payload }) => payload.user,
+    [getCurrentUserSuccess]: (_, { payload }) => payload,
+  }
 );
+
+const confirmToken = createReducer(null, {
+  [signUpSuccess]: (state, { payload }) => payload.confirmToken,
+  [confirmAccountSuccess]: () => null,
+  [removeConfirmToken]: () => null,
+});
 
 const loading = createReducer(false, {
   [signUpFailure]: () => false,
