@@ -71,16 +71,16 @@ const getCurrentUser = () => async (dispatch, getState) => {
   if (!accessToken) {
     return;
   }
-  axios.defaults.headers.Authorization = accessToken;
+  axios.defaults.headers.Authorization = `Bearer ${accessToken}`;
   dispatch(getCurrentUserRequested());
   try {
     const { data } = await axios.get(
-      "https://amz-app.herokuapp.com/api/v1/users/info"
-      // {
-      //   headers: {
-      //     Authorization: `Bearer ${accessToken}`,
-      //   },
-      // }
+      "https://amz-app.herokuapp.com/api/v1/users/info",
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
     );
     dispatch(getCurrentUserSuccess(data));
   } catch (error) {
